@@ -1,8 +1,10 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
 
 export class ImageApiService {
   static ENDPOINT = 'https://pixabay.com/api/';
   static API_KEY = '35657603-43cfc8be52addbea10916dda5';
+  static PER_PAGE = 40;
 
   constructor() {
     this.query = '';
@@ -10,13 +12,16 @@ export class ImageApiService {
   }
 
   async getimage() {
-    const url = `${ImageApiService.ENDPOINT}?key=${ImageApiService.API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
+    const url = `${ImageApiService.ENDPOINT}?key=${ImageApiService.API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=${ImageApiService.PER_PAGE}`;
 
     const { data } = await axios.get(url);
-
-    console.log('🚀data:', data, 'page', this.page);
-    this.incrementPage();
-    console.log('page', this.page);
+    if (data.totalHits === 0) {
+      Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
+      throw new Error("data is empty");
+    }
+    console.log(data);
 
     return data;
   }
@@ -24,6 +29,7 @@ export class ImageApiService {
   incrementPage() {
     this.page += 1;
   }
+
   resetPage() {
     this.page = 1;
   }

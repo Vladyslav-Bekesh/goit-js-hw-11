@@ -2,6 +2,7 @@
   margin-top: 100px;
   display: flex;
   gap: 30px;
+  flex-wrap: wrap;
 }
 .photo-card {
   border: 2px solid red;
@@ -9,9 +10,12 @@
   border-radius: 20px;
   /* max-width: 170px; */
   width: calc((100% - 20px) / 5);
+  min-width: 300px;
 }
 .card-image {
-  height: 150px;
+  display: block;
+  width: 80%;
+  margin: 0 auto;
 }
 .info {
   display: flex;
@@ -19,9 +23,6 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.info-item {
-}
-
 .info-item:not(:last-child) {
   margin-right: 10px;
 }
@@ -31,11 +32,11 @@
   background-color: rgb(106, 3, 106);
   border: 2px solid purple;
   padding: 15px 40px;
-  
+
   border-radius: 7px;
   margin: 0 auto;
   margin-top: 30px;
-  
+
   color: #fff;
   cursor: pointer;
 }
@@ -43,6 +44,6 @@
   background-color: rgba(106, 3, 106, 0.3);
   border-color: rgba(106, 3, 106, 0.3);
 }
-.load-more.hidden{
+.load-more.hidden {
   display: none;
 }

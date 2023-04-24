@@ -1,4 +1,4 @@
-export function createMarkup(imagesData) {
+function createMarkup(imagesData) {
   console.log('creating markup');
   const markup = imagesData.reduce(
     (markup, images) => markup + createListELement(images),
@@ -19,7 +19,7 @@ function createListELement({
   comments,
 }) {
   return `<div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+  <img src="${webformatURL}" alt="${tags}" class="card-image" loading="lazy" />
   <div class="info">
     <p class="info-item">
       <b>Likes: ${likes}</b>
@@ -37,7 +37,7 @@ function createListELement({
 </div>`;
 }
 
-function createMarkup(markup, element) {
+function insertMarkup(markup, element) {
   element.innerHTML = markup;
 }
-// export { createMarkup };
+export { createMarkup, insertMarkup };
