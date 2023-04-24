@@ -32,6 +32,7 @@ async function submitingForm(event) {
   
   refs.gallery.innerHTML = createMarkup(responce.hits);
   loadMoreButton.show();
+  
 }
 
 async function fetchNewImages() {
