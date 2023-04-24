@@ -1,10 +1,11 @@
-function createMarkup(imagesData) {
+export function createMarkup(imagesData) {
   console.log('creating markup');
-  const imagesObj = imagesData.hits;
-  const markup = imagesObj.reduce(
+  const markup = imagesData.reduce(
     (markup, images) => markup + createListELement(images),
     ''
   );
+  console.log('markup created');
+
   return markup;
 }
 
@@ -36,4 +37,7 @@ function createListELement({
 </div>`;
 }
 
-export { createMarkup };
+function createMarkup(markup, element) {
+  element.innerHTML = markup;
+}
+// export { createMarkup };
