@@ -1,7 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ImageApiService } from './js/imagesApiService';
 import LoadMoreBtn from './js/LoadMoreButton';
-import { createMarkup, insertMarkup } from './js/createMarkup';
+import { createMarkup } from './js/createMarkup';
 
 const imageApiService = new ImageApiService();
 
@@ -26,12 +26,12 @@ async function submitingForm(event) {
   imageApiService.query = query;
   imageApiService.resetPage();
 
-  loadMoreButton.show();
-
+  
   const responce = await imageApiService.getimage();
   Notify.info(`Hooray! We found ${responce.totalHits} images.`);
-
+  
   refs.gallery.innerHTML = createMarkup(responce.hits);
+  loadMoreButton.show();
 }
 
 async function fetchNewImages() {
