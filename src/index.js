@@ -26,20 +26,18 @@ async function submitingForm(event) {
   imageApiService.query = query;
   imageApiService.resetPage();
 
-  
   const responce = await imageApiService.getimage();
   Notify.info(`Hooray! We found ${responce.totalHits} images.`);
-  
+
   refs.gallery.innerHTML = createMarkup(responce.hits);
   loadMoreButton.show();
-  
 }
 
 async function fetchNewImages() {
   console.log('I WANT MORE');
 
   imageApiService.incrementPage();
-  
+
   const responce = await imageApiService.getimage();
   refs.gallery.insertAdjacentHTML('beforeend', createMarkup(responce.hits));
 
